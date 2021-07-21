@@ -19,18 +19,20 @@ echo -e "${greenColour}""
 ▒▒▒▒████████▒▒▒▒
 ▒▒▒▒████████▒▒▒▒
 ▒▒▒▒██▒▒▒▒██▒▒▒▒
-▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒       
-                                                                                                     
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+                               _______ __                               ___ __   _______
+.---.-.-----.--.--.----.-----.|   |   |__|.-----.-----.----.----.---.-.'  _|  |_|     __|.-----.----.--.--.-----.----.
+|  _  |-- __|  |  |   _|  -__||       |  ||     |  -__|  __|   _|  _  |   _|   _|__     ||  -__|   _|  |  |  -__|   _|
+|___._|_____|_____|__| |_____||__|_|__|__||__|__|_____|____|__| |___._|__| |____|_______||_____|__|  \___/|_____|__|
+
+by kxisxr                                                                                  
 by kxisxr
 @pixelbit131
 ""${endColour}"
 
-echo -e "${blueColour}"'------------------------------------------------------------------'"${endColour}"
+echo -e "${blueColour}"'-----------------------------------------------------------------------------------------'"${endColour}"
 echo -e ' '
  
-
-
-
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
 
 echo -e "${greenColour}"'Adding the alias... '"${endColour}"
@@ -46,9 +48,10 @@ add-apt-repository ppa:linuxuprising/java -y >/dev/null 2>&1
 sleep 1
 
 echo -e "${greenColour}"'Installing openjdk 16... '"${endColour}"
-apt-get install openjdk-16-jdk -y >/dev/null 2>&1
+apt-get install openjdk-16-jdk 
 sleep 1
 
+clear
 echo -e "${greenColour}"'Installing misc... '"${endColour}"
 apt-get install unzip wget screen -y >/dev/null 2>&1
 sleep 1
@@ -69,7 +72,7 @@ echo -e "${greenColour}"'Fixing the error... '"${endColour}"
 sed -i 's/eula=false/eula=true/g' eula.txt
 sleep 2
 
-source ~/.profile
-
 echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
 java -Xmx6000M -Xms4000M -jar server.jar nogui
+
+source ~/.profile
