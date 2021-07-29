@@ -49,7 +49,6 @@ echo -e "${greenColour}"'Installing openjdk 16... '"${endColour}"
 apt-get install openjdk-16-jdk --no-install-recommends -y >/dev/null 2>&1
 sleep 1
 
-clear
 echo -e "${greenColour}"'Installing misc... '"${endColour}"
 apt-get install unzip wget screen -y >/dev/null 2>&1
 sleep 1
