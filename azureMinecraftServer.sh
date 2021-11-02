@@ -34,7 +34,7 @@ echo -e ' '
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
 
 echo -e "${greenColour}"'Adding the alias... '"${endColour}"
-echo "alias startServer='cd /home/$usr/server; java -Xmx6000M -Xms4000M -jar server.jar nogui'" >> ~/.bashrc
+echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx6000M -Xms4000M -jar server.jar nogui'" >> ~/.bashrc
 sleep 1
 
 echo -e "${greenColour}"'Installing the jre... '"${endColour}"
