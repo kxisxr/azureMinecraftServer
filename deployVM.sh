@@ -31,5 +31,5 @@ sleep 3
 
 ip=$(cat results.txt | grep "publicIpAddress" | awk '{print $2}' | tr '"' ' ' | tr "," " " | tr -d " ")
 
-echo -e "${greenColour}"'Connect to the VM with this command:'"${endColour}" "${turquoiseColour}"'ssh azureMinecraftServer@'$ip''"${endColour}"
+echo -e "${greenColour}"'Connect to the VM with this command:'"${endColour}" "${turquoiseColour}"'ssh minecraftuser@'$ip''"${endColour}"
 rm -rf results.txt
