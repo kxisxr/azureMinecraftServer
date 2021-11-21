@@ -33,10 +33,8 @@ echo -e ' '
 
  if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     echo -e "${redColour}"'Not running as root, Exiting...'"${endColour}\n"
-    echo -e ' '
     echo -e "${greenColour}"'Example:'"\n${endColour}""${grayColour}"'sudo su'"${endColour}"
-    echo -e "${grayColour}"'root@MinecraftServer'"${endColour}" "${grayColour}"'./azureMinecraftServer.sh'"${endColour}"
-    echo -e ' '
+    echo -e "${grayColour}"'root@MinecraftServer'"${endColour}" "${grayColour}"'./azureMinecraftServer.sh'"${endColour}\n"
     exit
 fi
 
