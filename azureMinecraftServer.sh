@@ -22,7 +22,7 @@ echo -e "${greenColour}""
                                _______ __                               ___ __   _______
 .---.-.-----.--.--.----.-----.|   |   |__|.-----.-----.----.----.---.-.'  _|  |_|     __|.-----.----.--.--.-----.----.
 |  _  |-- __|  |  |   _|  -__||       |  ||     |  -__|  __|   _|  _  |   _|   _|__     ||  -__|   _|  |  |  -__|   _|
-|___._|_____|_____|__| |_____||__|_|__|__||__|__|_____|____|__| |___._|__| |____|_______||_____|__|  \___/|_____|__|                                                                                
+|___._|_____|_____|__| |_____||__|_|__|__||__|__|_____|____|__| |___._|__| |____|_______||_____|__|  \___/|_____|__|
 
 by kxisxr
 @pixelbit131
@@ -30,13 +30,58 @@ by kxisxr
 
 echo -e "${blueColour}"'-----------------------------------------------------------------------------------------'"${endColour}"
 echo -e ' '
- 
+
  if [[ $(/usr/bin/id -u) -ne 0 ]]; then
-    echo -e -n "${redColour}"'Not running as root, Exiting...'"${endColour}"
+    echo -e "${redColour}"'Not running as root, Exiting...'"${endColour}\n"
+    echo -e "${greenColour}"'Example:'"\n${endColour}""${grayColour}"'sudo su'"${endColour}"
+    echo -e "${grayColour}"'root@MinecraftServer'"${endColour}" "${grayColour}"'./azureMinecraftServer.sh'"${endColour}"
     echo -e ' '
-    echo -e -n "${greenColour}"'Example:'"${endColour}" "${grayColour}"'sudo su'"${endColour}"
-    echo -e -n "${greenColour}"'Example:'"${endColour}" "${grayColour}"'./azureMinecraftServer.sh'"${endColour}"
-    echo -e ' ' 
+    exit
+root@MinecraftAzure:/home/minecraftuser/azureMinecraftServer# ls
+README.md  azureMinecraftServer.sh  deployVM.sh  server
+root@MinecraftAzure:/home/minecraftuser/azureMinecraftServer# nano azureMinecraftServer.sh
+root@MinecraftAzure:/home/minecraftuser/azureMinecraftServer# ls
+README.md  azureMinecraftServer.sh  deployVM.sh  server
+root@MinecraftAzure:/home/minecraftuser/azureMinecraftServer# cat azureMinecraftServer.sh
+#!/bin/bash
+#Creator: kxisxr
+greenColour="\x1B[0;32m\033[1m"
+endColour="\033[0m\x1B[0m"
+redColour="\x1B[0;31m\033[1m"
+blueColour="\x1B[0;34m\033[1m"
+yellowColour="\x1B[0;33m\033[1m"
+purpleColour="\x1B[0;35m\033[1m"
+turquoiseColour="\x1B[0;36m\033[1m"
+grayColour="\x1B[0;37m\033[1m"
+
+echo -e "${greenColour}""
+
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+▒▒████▒▒▒▒████▒▒
+▒▒████▒▒▒▒████▒▒
+▒▒▒▒▒▒████▒▒▒▒▒▒
+▒▒▒▒████████▒▒▒▒
+▒▒▒▒████████▒▒▒▒
+▒▒▒▒██▒▒▒▒██▒▒▒▒
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+                               _______ __                               ___ __   _______
+.---.-.-----.--.--.----.-----.|   |   |__|.-----.-----.----.----.---.-.'  _|  |_|     __|.-----.----.--.--.-----.----.
+|  _  |-- __|  |  |   _|  -__||       |  ||     |  -__|  __|   _|  _  |   _|   _|__     ||  -__|   _|  |  |  -__|   _|
+|___._|_____|_____|__| |_____||__|_|__|__||__|__|_____|____|__| |___._|__| |____|_______||_____|__|  \___/|_____|__|
+
+by kxisxr
+@pixelbit131
+""${endColour}"
+
+echo -e "${blueColour}"'-----------------------------------------------------------------------------------------'"${endColour}"
+echo -e ' '
+
+ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo -e "${redColour}"'Not running as root, Exiting...'"${endColour}\n"
+    echo -e ' '
+    echo -e "${greenColour}"'Example:'"\n${endColour}""${grayColour}"'sudo su'"${endColour}"
+    echo -e "${grayColour}"'root@MinecraftServer'"${endColour}" "${grayColour}"'./azureMinecraftServer.sh'"${endColour}"
+    echo -e ' '
     exit
 fi
 
@@ -61,7 +106,7 @@ echo -e "${greenColour}"'Installing openjdk 16... '"${endColour}"
 apt-get install openjdk-16-jdk -y
 sleep 1
 
-clear 
+clear
 
 echo -e "${greenColour}"'Installing misc... '"${endColour}"
 apt-get install unzip wget screen -y >/dev/null 2>&1
@@ -86,5 +131,6 @@ sleep 2
 echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
 java -Xmx6000M -Xms4000M -jar server.jar nogui
 
-source ~/.profile
-source ~/.bashrc
+echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
+echo -e "${turquoiseColour}"'[!] IMPORTANT: Write the command '"${endColour}""${grayColour}"'source ~/.bashrc'"${endColour}""${turquoiseColour}"'once you shut down or pause the server, in order to initialize it with the command '"${grayColour}"'startServer.'"${endColour}"
+echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
