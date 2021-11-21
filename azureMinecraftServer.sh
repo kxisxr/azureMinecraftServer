@@ -45,6 +45,9 @@ echo -e "${greenColour}"'Adding the alias... '"${endColour}"
 echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx6000M -Xms4000M -jar server.jar nogui'" >> ~/.bashrc
 sleep 1
 
+eval "$(cat ~/.bashrc | tail -n +10)" > /dev/null 2>&1
+source ~/.bashrc
+
 echo -e "${greenColour}"'Installing the jre... '"${endColour}"
 apt-get install default-jre-headless -y >/dev/null 2>&1
 sleep 1
@@ -83,3 +86,4 @@ echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
 java -Xmx6000M -Xms4000M -jar server.jar nogui
 
 source ~/.profile
+source ~/.bashrc
