@@ -31,6 +31,14 @@ by kxisxr
 echo -e "${blueColour}"'-----------------------------------------------------------------------------------------'"${endColour}"
 echo -e ' '
  
+ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo -e -n "${redColour}"'Not running as root, Exiting...'"${endColour}"
+    echo -e ' '
+    echo -e -n "${greenColour}"'Example:'"${endColour}" "${grayColour}"'sudo ./azureMinecraftServer.sh'"${endColour}"
+    echo -e ' ' 
+    exit
+fi
+
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
 
 echo -e "${greenColour}"'Adding the alias... '"${endColour}"
