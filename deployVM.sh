@@ -29,5 +29,6 @@ az network nsg rule create --resource-group MinecraftGroup --nsg-name MinecraftA
 
 sleep 3
 
+ip=$(cat results.txt | grep "publicIpAddress" | awk '{print $2}' | tr '"' ' ' | tr "," " " | tr -d " ")
 echo -e "${greenColour}"'Connect to the VM with this command:'"${endColour}" "${turquoiseColour}"'ssh minecraftuser@'$ip''"${endColour}"
 rm -rf results.txt
