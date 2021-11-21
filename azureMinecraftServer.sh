@@ -81,9 +81,11 @@ echo -e "${greenColour}"'Fixing the error... '"${endColour}"
 sed -i 's/eula=false/eula=true/g' eula.txt
 sleep 2
 
-echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
-java -Xmx6000M -Xms4000M -jar server.jar nogui
-
 echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
 echo -e "${turquoiseColour}"'[!] IMPORTANT: Execute the command '"${endColour}""${yellowColour}"'source ~/.bashrc'"${endColour}""${turquoiseColour}"' once you shut down or pause the server, in order to initialize it with the command '"${yellowColour}"'startServer.'"${endColour}"
 echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
+
+echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
+java -Xmx6000M -Xms4000M -jar server.jar nogui
+
+source ~/.profile
