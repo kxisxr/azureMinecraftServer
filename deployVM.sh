@@ -9,27 +9,78 @@ purpleColour="\x1B[0;35m\033[1m"
 turquoiseColour="\x1B[0;36m\033[1m"
 grayColour="\x1B[0;37m\033[1m"
 
-#Creating the resource group
-echo -e "${greenColour}"'Creating the resource group... '"${endColour}"
-az group create -l centralus -n MinecraftGroup
+echo -e "${greenColour}""
 
-sleep 3
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+▒▒████▒▒▒▒████▒▒
+▒▒████▒▒▒▒████▒▒
+▒▒▒▒▒▒████▒▒▒▒▒▒
+▒▒▒▒████████▒▒▒▒
+▒▒▒▒████████▒▒▒▒
+▒▒▒▒██▒▒▒▒██▒▒▒▒
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+                               _______ __                               ___ __   _______
+.---.-.-----.--.--.----.-----.|   |   |__|.-----.-----.----.----.---.-.'  _|  |_|     __|.-----.----.--.--.-----.----.
+|  _  |-- __|  |  |   _|  -__||       |  ||     |  -__|  __|   _|  _  |   _|   _|__     ||  -__|   _|  |  |  -__|   _|
+|___._|_____|_____|__| |_____||__|_|__|__||__|__|_____|____|__| |___._|__| |____|_______||_____|__|  \___/|_____|__|
 
-#Creating and deploying the Virtual Machine
-echo -e "${greenColour}"'Creating and deploying the Virtual Machine... '"${endColour}"
+by kxisxr
+@pixelbit131
+""${endColour}"
 
-az vm create --resource-group MinecraftGroup --name MinecraftAzure --image UbuntuLTS --admin-username minecraftuser --authentication-type ssh --generate-ssh-keys --public-ip-sku Standard --size Standard_B2ms --storage-sku Standard_LRS --os-disk-name MineOSHDD --os-disk-size-gb 30 --os-disk-caching ReadWrite --data-disk-sizes-gb 32 --data-disk-caching ReadWrite | tee results.txt
+echo -e "${blueColour}"'-----------------------------------------------------------------------------------------'"${endColour}"
+echo -e ' '
 
-sleep 3
+ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo -e "${redColour}"'Not running as root, Exiting...'"${endColour}\n"
+    echo -e "${greenColour}"'Example:'"\n${endColour}""${grayColour}"'sudo su'"${endColour}"
+    echo -e "${grayColour}"'root@MinecraftAzure'"${endColour}" "${grayColour}"'./azureMinecraftServer.sh'"${endColour}\n"
+    exit
+fi
 
-echo -e "${greenColour}"'#Creating the NSG rule to open the 25565... '"${endColour}"
-#Creating the NSG rule to open the 25565
+usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
 
-az network nsg rule create --resource-group MinecraftGroup --nsg-name MinecraftAzureNSG --name Port_25565 --protocol '*' --source-address-prefixes Internet --priority 1010 --source-port-ranges '*' --destination-address-prefixes '*' --destination-port-ranges 25565 --access Allow
+echo -e "${greenColour}"'Adding the alias... '"${endColour}"
+echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx6000M -Xms4000M -jar server.jar nogui'" >> ~/.bashrc
+sleep 1
 
-sleep 3
+echo -e "${greenColour}"'Installing the jre... '"${endColour}"
+apt-get install default-jre-headless -y >/dev/null 2>&1
+sleep 1
 
-ip=$(cat results.txt | grep "publicIpAddress" | awk '{print $2}' | tr '"' ' ' | tr "," " " | tr -d " ")
+echo -e "${greenColour}"'Adding java repository... '"${endColour}"
+add-apt-repository ppa:linuxuprising/java -y >/dev/null 2>&1
+sleep 1
 
-echo -e "${greenColour}"'Connect to the VM with this command:'"${endColour}" "${turquoiseColour}"'ssh minecraftuser@'$ip''"${endColour}"
-rm -rf results.txt
+echo -e "${greenColour}"'Installing openjdk 16... '"${endColour}"
+apt-get install openjdk-16-jdk -y
+sleep 1
+
+clear
+
+echo -e "${greenColour}"'Installing misc... '"${endColour}"
+apt-get install unzip wget screen -y >/dev/null 2>&1
+sleep 1
+
+jversion=$(javac --version)
+echo -e "${greenColour}"'Javac version:' $jversion"${endColour}"
+sleep 1
+
+mkdir server; cd server
+echo -e "${greenColour}"'Downloading the minecraft launcher... '"${endColour}"
+wget https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar >/dev/null 2>&1
+
+echo -e "${greenColour}"'Initializing the server... '"${endColour}"
+java -Xmx6000M -Xms4000M -jar server.jar nogui >/dev/null 2>&1
+sleep 2
+
+echo -e "${greenColour}"'Fixing the error... '"${endColour}"
+sed -i 's/eula=false/eula=true/g' eula.txt
+sleep 2
+
+echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
+java -Xmx6000M -Xms4000M -jar server.jar nogui
+
+echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
+echo -e "${turquoiseColour}"'[!] IMPORTANT: Write the command '"${endColour}""${grayColour}"'source ~/.bashrc'"${endColour}""${turquoiseColour}"'once you shut down or pause the server, in order to initialize it with the command '"${grayColour}"'startServer.'"${endColour}"
+echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
