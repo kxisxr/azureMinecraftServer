@@ -38,6 +38,13 @@ echo -e ' '
     exit
 fi
 
+function stop_ctrl_z() {
+    echo $$
+    pkill -9 $$
+    killall java
+}
+trap stop_ctrl_z SIGTSTP
+
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
 
 echo -e "${greenColour}"'Adding the alias... '"${endColour}"
@@ -89,3 +96,4 @@ echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
 java -Xmx6000M -Xms4000M -jar server.jar nogui
 
 source ~/.profile
+exec bash
