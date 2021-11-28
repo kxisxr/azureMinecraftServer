@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 #Creator: kxisxr
 greenColour="\x1B[0;32m\033[1m"
 endColour="\033[0m\x1B[0m"
