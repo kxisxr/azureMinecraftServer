@@ -94,6 +94,3 @@ echo -e "\n${blueColour}"'------------------------------------------------------
 
 echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
 java -Xmx6000M -Xms4000M -jar server.jar nogui
-
-source ~/.profile
-exec bash
