@@ -39,11 +39,10 @@ echo -e ' '
 fi
 
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
-#process=$(ps faux | grep "-Xmx6000M" | awk '{print $2}' | head -n 1); kill -9 $process
 
 echo -e "${greenColour}"'Adding the aliases... '"${endColour}"
 echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx6000M -Xms4000M -jar server.jar nogui'" >> ~/.bashrc
-#echo 'alias kprocess="process=$(ps faux | grep "-Xmx6000M" | awk '{print $2}' | head -n 1); kill -9 $process"' >> ~/.bashrc
+echo "alias kprocess='killall -s SIGKILL java'" >> ~/.bashrc
 sleep 1
 
 eval "$(cat ~/.bashrc | tail -n +10)" > /dev/null 2>&1
