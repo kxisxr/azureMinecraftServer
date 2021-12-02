@@ -39,9 +39,11 @@ echo -e ' '
 fi
 
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
+process=$(ps faux | grep "-Xmx6000M" | awk '{print $2}' | head -n 1); kill -9 $process
 
-echo -e "${greenColour}"'Adding the alias... '"${endColour}"
+echo -e "${greenColour}"'Adding the aliases... '"${endColour}"
 echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx6000M -Xms4000M -jar server.jar nogui'" >> ~/.bashrc
+echo 'alias kprocess="process=$(ps faux | grep "-Xmx6000M" | awk '{print $2}' | head -n 1); kill -9 $process"' >> ~/.bashrc
 sleep 1
 
 eval "$(cat ~/.bashrc | tail -n +10)" > /dev/null 2>&1
@@ -82,8 +84,8 @@ sed -i 's/eula=false/eula=true/g' eula.txt
 sleep 2
 
 echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
-echo -e "${turquoiseColour}"'[!] IMPORTANT: Execute the command '"${endColour}""${yellowColour}"'source ~/.bashrc'"${endColour}""${turquoiseColour}"' once you shut down or pause the server, in order to initialize it with the command '"${yellowColour}"'startServer.'"${endColour}"
+echo -e "${turquoiseColour}"'[!] IMPORTANT: Kill the Java process when you pause or quit the server with the command: '"${endColour}""${yellowColour}"'kprocess'"${endColour}"
 echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
-
 echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
+
 java -Xmx6000M -Xms4000M -jar server.jar nogui
