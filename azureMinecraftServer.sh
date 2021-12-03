@@ -52,8 +52,8 @@ echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx600
 echo "alias kprocess='killall -s SIGKILL java'" >> ~/.bashrc
 sleep 1
 
-eval "$(cat ~/.bashrc | tail -n +10)" > /dev/null 2>&1
-source ~/.bashrc
+#eval "$(cat ~/.bashrc | tail -n +10)" > /dev/null 2>&1
+#source ~/.bashrc
 
 echo -e "${greenColour}"'Installing the jre... '"${endColour}"
 apt-get install default-jre-headless -y >/dev/null 2>&1
