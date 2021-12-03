@@ -1,5 +1,6 @@
 #!/bin/bash -i
 #Creator: kxisxr
+#Version: 1.0.0
 greenColour="\x1B[0;32m\033[1m"
 endColour="\033[0m\x1B[0m"
 redColour="\x1B[0;31m\033[1m"
@@ -38,6 +39,12 @@ echo -e ' '
     exit
 fi
 
+echo -e "${turquoiseColour}"'[1] 1.17'"${endColour}"
+echo -e "${purpleColour}"'[2] 1.18 (experimental)'"${endColour}\n"
+echo -e -n "${yellowColour}"'Version to install: '"${endColour}"
+read -e version
+echo -e ' '
+
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
 
 echo -e "${greenColour}"'Adding the aliases... '"${endColour}"
@@ -72,11 +79,18 @@ sleep 1
 
 mkdir server; cd server
 echo -e "${greenColour}"'Downloading the minecraft launcher... '"${endColour}"
+
+if [ $version -eq 1 ]
+then
 wget https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar >/dev/null 2>&1
+else
+wget https://launcher.mojang.com/v1/objects/83a3c2e94b744ad8f0c8bc373dd70a85da59babf/server.jar > /dev/null 2>&1
+fi
+sleep 1
 
 echo -e "${greenColour}"'Initializing the server... '"${endColour}"
 java -Xmx6000M -Xms4000M -jar server.jar nogui >/dev/null 2>&1
-sleep 2
+sleep 1
 
 echo -e "${greenColour}"'Fixing the error... '"${endColour}"
 sed -i 's/eula=false/eula=true/g' eula.txt
