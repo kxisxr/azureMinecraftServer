@@ -40,7 +40,7 @@ echo -e ' '
 fi
 
 echo -e "${turquoiseColour}"'[1] 1.17'"${endColour}"
-echo -e "${purpleColour}"'[2] 1.18.1 (experimental)'"${endColour}\n"
+echo -e "${purpleColour}"'[2] 1.18 (experimental)'"${endColour}\n"
 echo -e -n "${yellowColour}"'Version to install: '"${endColour}"
 read -e version
 echo -e ' '
