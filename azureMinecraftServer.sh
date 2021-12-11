@@ -1,6 +1,6 @@
 #!/bin/bash -i
 #Creator: kxisxr
-#Version: 1.0.0
+#Version: 1.0.1
 greenColour="\x1B[0;32m\033[1m"
 endColour="\033[0m\x1B[0m"
 redColour="\x1B[0;31m\033[1m"
@@ -41,6 +41,7 @@ fi
 
 echo -e "${turquoiseColour}"'[1] 1.17'"${endColour}"
 echo -e "${purpleColour}"'[2] 1.18 (experimental)'"${endColour}\n"
+echo -e "${yelloweColour}"'[3] 1.18.1'"${endColour}\n"
 echo -e -n "${yellowColour}"'Version to install: '"${endColour}"
 read -e version
 echo -e ' '
@@ -80,6 +81,9 @@ echo -e "${greenColour}"'Downloading the minecraft launcher... '"${endColour}"
 if [ $version -eq 1 ]
 then
 wget https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar >/dev/null 2>&1
+elif [ $version -eq 3 ]
+then
+wget https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar > /dev/null 2>&1
 else
 wget https://launcher.mojang.com/v1/objects/3cf24a8694aca6267883b17d934efacc5e44440d/server.jar > /dev/null 2>&1
 fi
