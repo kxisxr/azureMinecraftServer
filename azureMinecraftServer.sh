@@ -42,6 +42,7 @@ fi
 echo -e "${turquoiseColour}"'[1] 1.17'"${endColour}"
 echo -e "${purpleColour}"'[2] 1.18 (experimental)'"${endColour}"
 echo -e "${yellowColour}"'[3] 1.18.1'"${endColour}\n"
+echo -e "${yellowColour}"'[4] 1.18.2'"${endColour}\n"
 echo -e -n "${yellowColour}"'Version to install: '"${endColour}"
 read -e version
 echo -e ' '
@@ -84,6 +85,9 @@ wget https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf2022619449
 elif [ $version -eq 3 ]
 then
 wget https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar > /dev/null 2>&1
+elif [ $version -eq 4 ]
+then
+wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar > /dev/null 2>&1
 else
 wget https://launcher.mojang.com/v1/objects/3cf24a8694aca6267883b17d934efacc5e44440d/server.jar > /dev/null 2>&1
 fi
