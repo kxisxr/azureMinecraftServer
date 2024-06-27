@@ -92,17 +92,17 @@ then
 wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar > /dev/null 2>&1
 elif [ $version -eq 5 ]
 then
-wget https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar
-elif [$version -eq 6 ]
+wget https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar > /dev/null 2>&1
+elif [ $version -eq 6 ]
 then
-wget https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar
+wget https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar > /dev/null 2>&1
 else
-wget https://launcher.mojang.com/v1/objects/3cf24a8694aca6267883b17d934efacc5e44440d/server.jar > /dev/null 2>&1
+wget https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar > /dev/null 2>&1
 fi
 sleep 1
 
 echo -e "${greenColour}"'Initializing the server... '"${endColour}"
-java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.jar nogui >/dev/null 2>&1
+java -Xmx1024M -Xms1024M -jar server.jar nogui >/dev/null 2>&1
 sleep 1
 
 echo -e "${greenColour}"'Fixing the error... '"${endColour}"
@@ -114,7 +114,7 @@ echo -e "${turquoiseColour}"'[!] IMPORTANT: Kill the Java process when you pause
 echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
 echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
 
-java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.jar nogui
+java -Xmx1024M -Xms1024M -jar server.jar nogui
 
 source ~/.bashrc
 exec bash
