@@ -102,7 +102,7 @@ fi
 sleep 1
 
 echo -e "${greenColour}"'Initializing the server... '"${endColour}"
-java -Xmx6000M -Xms4000M -jar server.jar nogui >/dev/null 2>&1
+java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.jar nogui >/dev/null 2>&1
 sleep 1
 
 echo -e "${greenColour}"'Fixing the error... '"${endColour}"
@@ -114,7 +114,7 @@ echo -e "${turquoiseColour}"'[!] IMPORTANT: Kill the Java process when you pause
 echo -e "\n${blueColour}"'--------------------------------------------------------------------------------------------------------'"${endColour}\n"
 echo -e "${greenColour}"'Re-initializing the server... '"${endColour}"
 
-java -Xmx6000M -Xms4000M -jar server.jar nogui
+java -Xmx1024M -Xms1024M -jar minecraft_server.1.21.jar nogui
 
 source ~/.bashrc
 exec bash
