@@ -52,7 +52,7 @@ echo -e ' '
 usr=$(cat /etc/passwd | grep 1000 | tr ':' ' ' | awk '{print $1}')
 
 echo -e "${greenColour}"'Adding the aliases... '"${endColour}"
-echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx6000M -Xms4000M -jar server.jar nogui'" >> ~/.bashrc
+echo "alias startServer='cd /home/$usr/azureMinecraftServer/server; java -Xmx1024M -Xms1024M -jar server.jar nogui'" >> ~/.bashrc
 echo "alias kprocess='killall -s SIGKILL java'" >> ~/.bashrc
 sleep 1
 
@@ -65,7 +65,38 @@ add-apt-repository ppa:linuxuprising/java -y >/dev/null 2>&1
 sleep 1
 
 echo -e "${greenColour}"'Installing openjdk 22... '"${endColour}"
-apt-get install openjdk-22-jdk -y
+# Download Oracle Java 22 package
+wget https://download.oracle.com/java/22/latest/jdk-22_linux-x64_bin.deb -O jdk-22.deb
+
+# Check if download was successful
+if [ $? -eq 0 ]; then
+  echo "Java 22 package downloaded successfully."
+else
+  echo "Error downloading Java 22 package. Exiting..."
+  exit 1
+fi
+
+# Install the downloaded package
+sudo dpkg -i jdk-22.deb
+
+# Check for installation errors
+if [ $? -eq 0 ]; then
+  echo "Java 22 package installation successful."
+else
+  echo "Error installing Java 22 package. Please check logs for details. Exiting..."
+  exit 1
+fi
+
+# Update alternatives for Java
+sudo update-alternatives --config java
+
+# Choose option number 3 (assuming Java 22 is the third option)
+echo "3" | sudo update-alternatives --config java
+
+echo "Java 22 installation complete."
+
+# Remove the downloaded package (optional)
+# rm jdk-22.deb
 sleep 1
 
 clear
