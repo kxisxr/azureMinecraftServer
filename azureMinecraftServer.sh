@@ -64,8 +64,8 @@ echo -e "${greenColour}"'Adding java repository... '"${endColour}"
 add-apt-repository ppa:linuxuprising/java -y >/dev/null 2>&1
 sleep 1
 
-echo -e "${greenColour}"'Installing openjdk 16... '"${endColour}"
-apt-get install openjdk-16-jdk -y
+echo -e "${greenColour}"'Installing openjdk 22... '"${endColour}"
+apt-get install openjdk-22-jdk -y
 sleep 1
 
 clear
