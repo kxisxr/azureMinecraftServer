@@ -1,6 +1,6 @@
 #!/bin/bash -i
 #Creator: kxisxr
-#Version: 1.0.1
+#Version: 1.2.1
 greenColour="\x1B[0;32m\033[1m"
 endColour="\033[0m\x1B[0m"
 redColour="\x1B[0;31m\033[1m"
@@ -115,16 +115,16 @@ echo -e "${greenColour}"'Downloading the minecraft launcher... '"${endColour}"
 if [ $version -eq 1 ]
 then
 wget https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar >/dev/null 2>&1
-elif [ $version -eq 3 ]
+elif [ $version -eq 2 ]
 then
 wget https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar > /dev/null 2>&1
-elif [ $version -eq 4 ]
+elif [ $version -eq 3 ]
 then
 wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar > /dev/null 2>&1
-elif [ $version -eq 5 ]
+elif [ $version -eq 4 ]
 then
 wget https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar > /dev/null 2>&1
-elif [ $version -eq 6 ]
+elif [ $version -eq 5 ]
 then
 wget https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar > /dev/null 2>&1
 else
