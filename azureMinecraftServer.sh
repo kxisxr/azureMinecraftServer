@@ -39,12 +39,10 @@ echo -e ' '
     exit
 fi
 
-echo -e "${turquoiseColour}"'[1] 1.17'"${endColour}"
-echo -e "${purpleColour}"'[2] 1.18 (experimental)'"${endColour}"
-echo -e "${yellowColour}"'[3] 1.18.1'"${endColour}\n"
-echo -e "${yellowColour}"'[4] 1.18.2'"${endColour}\n"
-echo -e "${yellowColour}"'[5] 1.19.2'"${endColour}\n"
-echo -e "${yellowColour}"'[6] 1.21.0'"${endColour}\n"
+echo -e "${yellowColour}"'[1] 1.18.1'"${endColour}\n"
+echo -e "${yellowColour}"'[2] 1.18.2'"${endColour}\n"
+echo -e "${yellowColour}"'[3] 1.19.2'"${endColour}\n"
+echo -e "${yellowColour}"'[4] 1.21.0'"${endColour}\n"
 echo -e -n "${yellowColour}"'Version to install: '"${endColour}"
 read -e version
 echo -e ' '
@@ -114,17 +112,14 @@ echo -e "${greenColour}"'Downloading the minecraft launcher... '"${endColour}"
 
 if [ $version -eq 1 ]
 then
-wget https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar >/dev/null 2>&1
+wget https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar > /dev/null 2>&1
 elif [ $version -eq 2 ]
 then
-wget https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar > /dev/null 2>&1
+wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar > /dev/null 2>&1
 elif [ $version -eq 3 ]
 then
-wget https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar > /dev/null 2>&1
-elif [ $version -eq 4 ]
-then
 wget https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar > /dev/null 2>&1
-elif [ $version -eq 5 ]
+elif [ $version -eq 4 ]
 then
 wget https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar > /dev/null 2>&1
 else
